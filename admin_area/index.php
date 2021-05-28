@@ -59,7 +59,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M-Dev Store Admin Area</title>
+    <title>DongVi Motor</title>
     <link rel="stylesheet" href="css/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -189,6 +189,11 @@
                     }if(isset($_GET['edit_css'])){
                         
                         include("edit_css.php");
+                        
+                    }
+                    if(isset($_GET['statistics'])){
+                        
+                        include("statistics.php");
                         
                     }
                 

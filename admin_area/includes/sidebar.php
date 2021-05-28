@@ -196,6 +196,12 @@
             </li><!-- li finish -->
             
             <li><!-- li begin -->
+                <a href="index.php?statistics"><!-- a href begin -->
+                    <i class="fa fa-fw fa-table"></i> Thống kê
+                </a><!-- a href finish -->
+            </li><!-- li finish -->
+            
+            <li><!-- li begin -->
                 <a href="index.php?edit_css"><!-- a href begin -->
                     <i class="fa fa-fw fa-pencil"></i> Chỉnh sửa CSS
                 </a><!-- a href finish -->

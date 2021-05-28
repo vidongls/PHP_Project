@@ -14,9 +14,6 @@ $customer_name = $row_customer['customer_name'];
 
 $customer_email = $row_customer['customer_email'];
 
-$customer_country = $row_customer['customer_country'];
-
-$customer_city = $row_customer['customer_city'];
 
 $customer_contact = $row_customer['customer_contact'];
 
@@ -53,22 +50,6 @@ $customer_image = $row_customer['customer_image'];
         <input type="text" name="c_contact" class="form-control" value="<?php echo $customer_contact; ?>" required>
         
     </div><!-- form-group Finish -->
-    <div class="form-group"><!-- form-group Begin -->
-        
-        <label> Quốc gia: </label>
-        
-        <input type="text" name="c_country" class="form-control" value="<?php echo $customer_country; ?>" required>
-        
-    </div><!-- form-group Finish -->
-    
-    <div class="form-group"><!-- form-group Begin -->
-        
-        <label> Thành phố: </label>
-        
-        <input type="text" name="c_city" class="form-control" value="<?php echo $customer_city; ?>" required>
-        
-    </div><!-- form-group Finish -->
-    
     
     <div class="form-group"><!-- form-group Begin -->
         
@@ -109,10 +90,6 @@ if(isset($_POST['update'])){
     $c_name = $_POST['c_name'];
     
     $c_email = $_POST['c_email'];
-    
-    $c_country = $_POST['c_country'];
-    
-    $c_city = $_POST['c_city'];
     
     $c_address = $_POST['c_address'];
     

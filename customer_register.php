@@ -47,22 +47,24 @@ if(isset($_GET['pro_id'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M-Dev Store</title>
+    <title>DongVi Motor Store</title>
     <link rel="stylesheet" href="styles/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/swiper.min.css">
-    
+
     <!-- <link rel="stylesheet" href="styles/style.css"> -->
     <link rel="stylesheet" href="styles/register.css">
 </head>
+
 <body>
-   
- <!--Navigation-->
-    
- <div class="menu-mobile">
+
+    <!--Navigation-->
+
+    <div class="menu-mobile">
         <div class="menu-items">
             <a href="index.php" class="menu-link">Trang chủ</a>
             <a href="shop.php" class="menu-link">Cửa hàng</a>
@@ -159,82 +161,79 @@ if(isset($_GET['pro_id'])){
     </nav>
     <!--end Navigation-->
 
-   
-   <div id="content"><!-- #content Begin -->
-       <div class="container"><!-- container Begin -->
-    
-           
-           <div class="col-md-9"><!-- col-md-9 Begin -->
-               
-              <div class="modal open">
-        <div class="wrapper">
-            <div class="content">
-                <div class="subtitle">Đăng ký</div>
-                <!--form-->
-                <form action="customer_register.php" method="post" enctype="multipart/form-data">
-                    <div class="input-wrapper">
-                        <label for="name">Tên</label>
-                        <input name="c_name" id="name" type="text" placeholder="Nhập tên của bạn">
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <label for="email">E-mail</label>
-                        <input name="c_email"  id="email" type="text" placeholder="Nhập email của bạn"  required>
-                    </div>
 
-                    <div class="input-wrapper">
-                        <label for="password">Mật Khẩu</label>
-                        <input name="c_pass" id="password" type="password" placeholder="Mật khẩu"  required>
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="confirmpassword">Nhập Lại Mật Khẩu</label>
-                        <input id="confirmpassword" type="password" placeholder="Nhập lại mật khẩu"  required>
-                    </div>
-                    <div class="input-wrapper">
-                        <label for="phone">Số điện thoại</label>
-                        <input name="c_contact" id="phone" type="text" placeholder="Di động"  required>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                    <label for="country">Quốc gia</label>
-                        <input name="c_country" id="country" type="text" placeholder="Quốc gia"  required>
-                    </div>     
+    <div id="content">
+        <!-- #content Begin -->
+        <div class="container">
+            <!-- container Begin -->
 
-                    <div class="input-wrapper">
-                    <label for="city">Thành phố</label>
-                        <input name="c_city" id="city" type="text" placeholder="Quốc gia"  required>
-                    </div>    
-                    
-                    <div class="input-wrapper">
-                        <label for="address">Địa Chỉ</label>
-                        <textarea name="c_address" cols="30" rows="10" placeholder="Địa chỉ giao hàng" ></textarea>
-                    </div>
-                    <div class="input-wrapper">
 
-                        <input style="border:none; padding: 0px; border-radius: 0px; margin-bottom: 0px" type="file" id="inputFile" class="inputFile" name="c_image" required>
-                        <label tabindex="0" for="inputFile" class="uploadIcon"></label>
-                        <label tabindex="0" for="inputFile" class="fileReturn"></label>
-                    </div>
-                
-                    <button type="submit" name="register" class="btn">Tạo tài khoản</button>
-                </form>
-                <!--end form-->
-            </div>
-        </div>
-    </div>
-               
-           </div><!-- col-md-9 Finish -->
-           
-       </div><!-- container Finish -->
-   </div><!-- #content Finish -->
+            <div class="col-md-9">
+                <!-- col-md-9 Begin -->
 
-    
+                <div class="modal open">
+                    <div class="wrapper">
+                        <div class="content">
+                            <div class="subtitle">Đăng ký</div>
+                            <!--form-->
+                            <form action="customer_register.php" method="post" enctype="multipart/form-data">
+                                <div class="input-wrapper">
+                                    <label for="name">Tên</label>
+                                    <input name="c_name" id="name" type="text" placeholder="Nhập tên của bạn">
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <label for="password">Mật Khẩu</label>
+                                    <input name="c_pass" id="password" type="password" placeholder="Mật khẩu" required>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="confirmpassword">Nhập Lại Mật Khẩu</label>
+                                    <input id="confirmpassword" type="password" placeholder="Nhập lại mật khẩu"
+                                        required>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="email">E-mail</label>
+                                    <input name="c_email" id="email" type="text" placeholder="Nhập email của bạn"
+                                        required>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="phone">Số điện thoại</label>
+                                    <input name="c_contact" id="phone" type="text" placeholder="Di động" required>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <label for="address">Địa Chỉ</label>
+                                    <textarea name="c_address" cols="30" rows="10"
+                                        placeholder="Địa chỉ giao hàng"></textarea>
+                                </div>
+                                <div class="input-wrapper">
+
+                                    <input style="border:none; padding: 0px; border-radius: 0px; margin-bottom: 0px"
+                                        type="file" id="inputFile" class="inputFile" name="c_image" required>
+                                    <label tabindex="0" for="inputFile" class="uploadIcon"></label>
+                                    <label tabindex="0" for="inputFile" class="fileReturn"></label>
+                                </div>
+
+                                <button type="submit" name="register" class="btn">Tạo tài khoản</button>
+                            </form>
+                            <!--end form-->
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- col-md-9 Finish -->
+
+        </div><!-- container Finish -->
+    </div><!-- #content Finish -->
+
+
     <script src="js/jquery-331.min.js"></script>
     <script src="js/bootstrap-337.min.js"></script>
-    <script  src="js/main.js"></script>
-    <script  src="js/mobile_menu.js"></script>
-    
+    <script src="js/main.js"></script>
+    <script src="js/mobile_menu.js"></script>
+
 </body>
+
 </html>
 
 
@@ -248,10 +247,6 @@ if(isset($_POST['register'])){
     
     $c_pass = $_POST['c_pass'];
     
-    $c_country = $_POST['c_country'];
-    
-    $c_city = $_POST['c_city'];
-    
     $c_contact = $_POST['c_contact'];
     
     $c_address = $_POST['c_address'];
@@ -264,7 +259,7 @@ if(isset($_POST['register'])){
     
     move_uploaded_file($c_image_tmp,"customer/customer_images/$c_image");
     
-    $insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image','$c_ip')";
+    $insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_contact','$c_address','$c_image','$c_ip')";
     
     $run_customer = mysqli_query($con,$insert_customer);
     

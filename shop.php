@@ -90,7 +90,7 @@
                                 $pro_price = $row_products['product_price'];
 
                                 $pro_img1 = $row_products['product_img1'];
-                                
+                                $pro_price =  number_format($pro_price)."";
                                 echo "
                                 
                                     <div class='col-md-4 col-sm-6 center-responsive'>
@@ -113,21 +113,21 @@
                                             
                                                 <p class='price'>
 
-                                                    $$pro_price
+                                                    $pro_price đ
 
                                                 </p>
 
-                                                <p class='buttons'>
+                                                <p class='buttons' style = ' display:flex; justify-content:center; '>
 
-                                                    <a class='btn btn-default' href='details.php?pro_id=$pro_id'>
+                                                    <a class='btn btn-default' href='details.php?pro_id=$pro_id' style = 'margin-right:15px;'>
 
-                                                        View Details
+                                                        Chi tiết
 
                                                     </a>
 
                                                     <a class='btn btn-primary' href='details.php?pro_id=$pro_id'>
 
-                                                        <i class='fa fa-shopping-cart'></i> Add To Cart
+                                                        <i class='fa fa-shopping-cart'></i> Thêm
 
                                                     </a>
 
@@ -163,7 +163,7 @@
                         
                             <li>
                             
-                                <a href='shop.php?page=1'> ".'First Page'." </a>
+                                <a href='shop.php?page=1'> ".'Đầu trang'." </a>
                             
                             </li>
                         
@@ -187,7 +187,7 @@
                         
                             <li>
                             
-                                <a href='shop.php?page=$total_pages'> ".'Last Page'." </a>
+                                <a href='shop.php?page=$total_pages'> ".'Cuối trang'." </a>
                             
                             </li>
                         

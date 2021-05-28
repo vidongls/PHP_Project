@@ -261,13 +261,13 @@
                             <tr>
                                 <!-- th begin -->
 
-                                <th> ID đặt hàng: </th>
-                                <th> Email khách hàng: </th>
-                                <th> Số hoá đơn: </th>
-                                <th> ID sản phẩm: </th>
-                                <th>Số lượng: </th>
-                                <th> Product color: </th>
-                                <th> Status: </th>
+                                <th> ID đặt hàng </th>
+                                <th> Email khách hàng </th>
+                                <th> Số hoá đơn </th>
+                                <th> ID sản phẩm </th>
+                                <th> Số lượng </th>
+                                <th> Màu </th>
+                                <th> Status </th>
 
                             </tr><!-- th finish -->
 
