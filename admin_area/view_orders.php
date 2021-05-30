@@ -8,50 +8,66 @@
 
 ?>
 
-<div class="row"><!-- row 1 begin -->
-    <div class="col-lg-12"><!-- col-lg-12 begin -->
-        <ol class="breadcrumb"><!-- breadcrumb begin -->
-            <li class="active" style="text-transform:uppercase;"><!-- active begin -->
-                
+<div class="row">
+    <!-- row 1 begin -->
+    <div class="col-lg-12">
+        <!-- col-lg-12 begin -->
+        <ol class="breadcrumb">
+            <!-- breadcrumb begin -->
+            <li class="active" style="text-transform:uppercase;">
+                <!-- active begin -->
+
                 <i class="fa fa-dashboard"></i> Bảng điều khiển / đơn hàng
-                
+
             </li><!-- active finish -->
         </ol><!-- breadcrumb finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 1 finish -->
 
-<div class="row"><!-- row 2 begin -->
-    <div class="col-lg-12"><!-- col-lg-12 begin -->
-        <div class="panel panel-default"><!-- panel panel-default begin -->
-            <div class="panel-heading"><!-- panel-heading begin -->
-               <h3 class="panel-title" style="text-transform:uppercase;"><!-- panel-title begin -->
-               
-                   <i class="fa fa-tags"></i>  Bảng điều khiển / đơn hàng
-                
-               </h3><!-- panel-title finish --> 
+<div class="row">
+    <!-- row 2 begin -->
+    <div class="col-lg-12">
+        <!-- col-lg-12 begin -->
+        <div class="panel panel-default">
+            <!-- panel panel-default begin -->
+            <div class="panel-heading">
+                <!-- panel-heading begin -->
+                <h3 class="panel-title" style="text-transform:uppercase;">
+                    <!-- panel-title begin -->
+
+                    <i class="fa fa-tags"></i> Bảng điều khiển / đơn hàng
+
+                </h3><!-- panel-title finish -->
             </div><!-- panel-heading finish -->
-            
-            <div class="panel-body"><!-- panel-body begin -->
-                <div class="table-responsive"><!-- table-responsive begin -->
-                    <table class="table table-striped table-bordered table-hover"><!-- table table-striped table-bordered table-hover begin -->
-                        
-                        <thead><!-- thead begin -->
-                            <tr><!-- tr begin -->
+
+            <div class="panel-body">
+                <!-- panel-body begin -->
+                <div class="table-responsive">
+                    <!-- table-responsive begin -->
+                    <table class="table table-striped table-bordered table-hover">
+                        <!-- table table-striped table-bordered table-hover begin -->
+
+                        <thead>
+                            <!-- thead begin -->
+                            <tr>
+                                <!-- tr begin -->
                                 <th> STT: </th>
-                                <th>Địa chỉ Email: </th>
-                                <th> Số hoá đơn: </th>
-                                <th> Tên sản phẩm: </th>
-                                <th> Số lượng: </th>
-                                <th> Màu sắc: </th>
-                                <th> Ngày đặt hàng: </th>
-                                <th> Tổng tiền: </th>
-                                <th> Trạng thái: </th>
-                                <th> Xoá: </th>
+                                <th>Địa chỉ Email</th>
+                                <th> Số hoá đơn</th>
+                                <th> Tên sản phẩm</th>
+                                <th> Số lượng</th>
+                                <th> Màu sắc</th>
+                                <th> Ngày đặt hàng</th>
+                                <th> Tổng tiền </th>
+                                <th> Trạng thái </th>
+                                <th> Xoá</th>
+                                <th>Xác nhận thanh toán</th>
                             </tr><!-- tr finish -->
                         </thead><!-- thead finish -->
-                        
-                        <tbody><!-- tbody begin -->
-                            
+
+                        <tbody>
+                            <!-- tbody begin -->
+
                             <?php 
           
                                 $i=0;
@@ -105,8 +121,9 @@
                                     $i++;
                             
                             ?>
-                            
-                            <tr><!-- tr begin -->
+
+                            <tr>
+                                <!-- tr begin -->
                                 <td> <?php echo $i; ?> </td>
                                 <td> <?php echo $customer_email; ?> </td>
                                 <td> <?php echo $invoice_no; ?></td>
@@ -116,41 +133,51 @@
                                 <td> <?php echo $order_date; ?> </td>
                                 <td> <?php echo number_format( $order_amount).""; ?> đ</td>
                                 <td>
-                                    
+
                                     <?php 
                                     
-                                        if($order_status=='pending'){
+                                        if($order_status=='Pending'){
                                             
-                                            echo $order_status='Đang xử lý';
+                                            echo 'Đang xử lý';
                                             
                                         }else{
                                             
-                                            echo $order_status='Hoàn thành';
+                                            echo 'Hoàn thành';
                                             
                                         }
                                     
                                     ?>
-                                    
+
                                 </td>
-                                <td> 
-                                     
-                                     <a href="index.php?delete_order=<?php echo $order_id; ?>">
-                                     
+                                
+                                <td>
+
+                                    <a href="index.php?delete_order=<?php echo $order_id; ?>">
+
                                         <i class="fa fa-trash-o"></i> Xoá
-                                    
-                                     </a> 
-                                     
+
+                                    </a>
+
                                 </td>
-                            </tr><!-- tr finish -->
-                            
+
+
+                                
+                                <td>
+                                <a href="index.php?confirm_yes=<?php echo $order_id; ?>" class="btn btn-primary btn-sm btn-confim"> Xác nhận</a>
+                                <a href="index.php?confirm_no=<?php echo $order_id; ?>" class="btn btn-primary btn-sm"> Huỷ xác nhận </a>
+                                </td>
+
+                                
+                                </tr><!-- tr finish -->
+
                             <?php } ?>
-                            
+
                         </tbody><!-- tbody finish -->
-                        
+
                     </table><!-- table table-striped table-bordered table-hover finish -->
                 </div><!-- table-responsive finish -->
             </div><!-- panel-body finish -->
-            
+
         </div><!-- panel panel-default finish -->
     </div><!-- col-lg-12 finish -->
 </div><!-- row 2 finish -->

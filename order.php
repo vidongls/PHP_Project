@@ -14,7 +14,7 @@ if(isset($_GET['c_id'])){
 
 $ip_add = getRealIpUser();
 
-$status = "pending";
+$status = "Pending";
 
 $invoice_no = mt_rand();
 

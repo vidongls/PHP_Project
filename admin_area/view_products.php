@@ -84,13 +84,25 @@
                                 <td><?php echo number_format($pro_price)."";?> đ </td>
                                 <td> <?php 
                                     
-                                        $get_sold = "select * from pending_orders where product_id='$pro_id'";
+                                        $get_sold = "select SUM(qty) AS tongsp from pending_orders where product_id='$pro_id'";
                                     
                                         $run_sold = mysqli_query($con,$get_sold);
                                     
-                                        $count = mysqli_num_rows($run_sold);
-                                    
-                                        echo $count;
+                          
+                                        while($row_orders = mysqli_fetch_array($run_sold)){
+                
+                                            
+                                            $qty = $row_orders['tongsp'];
+                                            if($qty == NULL){
+                                                echo "0";
+
+                                            }
+                                            else{
+                                                echo $qty;
+                                            }
+                                        
+                                        }
+                    
                                     
                                      ?> 
                                 </td>

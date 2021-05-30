@@ -144,9 +144,19 @@
         
         if($run_update_slide){
             
-            echo "<script>alert('Cập nhật thành công !')</script>"; 
-        
-            echo "<script>window.open('index.php?view_slides','_self')</script>";
+            echo "
+            <script>
+            Swal.fire(
+              'Thành công',
+              'Đã cập nhật!',
+              'success'
+            ).then((result)=>{
+              if (result.isConfirmed) {
+                window.open('index.php?view_slides','_self')
+              }
+            })
+            </script>
+            ";   
             
         }
         

@@ -37,7 +37,6 @@
                 <th> Màu: </th>
                 <th> Ngày đặt hàng:</th>
                 <th> Trạng thái: </th>
-                <th> Lựa chọn: </th>
 
             </tr><!--  tr Finish  -->
 
@@ -82,13 +81,13 @@
                 
                 $i++;
                 
-                if($order_status=='pending'){
+                if($order_status=='Pending'){
                     
-                    $order_status = 'Chưa thanh toán';
+                    $order_status = 'Chưa xác nhận';
                     
                 }else{
                     
-                    $order_status = 'Thanh toán';
+                    $order_status = 'Đã xác nhận';
                     
                 }
             
@@ -104,23 +103,6 @@
                 <td> <?php echo $color; ?> </td>
                 <td> <?php echo $order_date; ?> </td>
                 <td> <?php echo $order_status; ?> </td>
-
-                <td>
-                <?php
-                
-                    if($order_status == 'Thanh toán'){
-                        echo " <a href='#' target='_blank' class='btn btn-primary btn-sm disabled'>Đã thanh toán </a>";
-
-
-                    }
-                    else{
-                    
-                     echo " <a href='confirm.php?order_id=<?php echo $order_id; ?>' target='_blank' class='btn btn-primary btn-sm'> Xác nhận thanh toán </a>";
-                    }
-                ?>
-                    
-
-                </td>
 
             </tr><!--  tr Finish  -->
 

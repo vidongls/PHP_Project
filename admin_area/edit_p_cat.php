@@ -121,9 +121,18 @@
               
               if($run_p_cat){
                   
-                  echo "<script>alert('Cập nhật thành công')</script>";
-                  
-                  echo "<script>window.open('index.php?view_p_cats','_self')</script>";
+                  echo "<script>
+                  Swal.fire(
+                    'Thành công',
+                    'Đã cập nhật!',
+                    'success'
+                  ).then((result)=>{
+                    if (result.isConfirmed) {
+                        window.open('index.php?view_p_cats','_self')
+                    }
+                  })
+                  </script>";
+
                   
               }
               

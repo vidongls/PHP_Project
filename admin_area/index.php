@@ -62,6 +62,10 @@
     <title>DongVi Motor</title>
     <link rel="stylesheet" href="css/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
+   
+    <link rel="stylesheet" href="css/sweetalert2.min.css"> 
+
+    <script src="js/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -161,8 +165,26 @@
                     }if(isset($_GET['delete_order'])){
                         
                         include("delete_order.php");
+                        //
+                    
                         
-                    }if(isset($_GET['view_payments'])){
+                    }
+                
+                    if(isset($_GET['confirm_yes'])){
+    
+                        include("confirm_yes.php");
+    
+                    }
+                    
+                    if(isset($_GET['confirm_no'])){
+    
+                        include("confirm_no.php");
+    
+                    }
+    
+
+
+                    if(isset($_GET['view_payments'])){
                         
                         include("view_payments.php");
                         
@@ -205,6 +227,10 @@
 
     <script src="js/jquery-331.min.js"></script>
     <script src="js/bootstrap-337.min.js"></script>
+
+
+
+
 </body>
 
 </html>

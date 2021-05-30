@@ -54,7 +54,7 @@ if(isset($_GET['pro_id'])){
     <link rel="stylesheet" href="styles/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/swiper.min.css">
-    
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>

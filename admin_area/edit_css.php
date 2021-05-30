@@ -96,8 +96,15 @@
             fwrite($handle,$newdata);
             fclose($handle);
 
-            echo "<script>alert('Thành công')</script>";
-            echo "<script>window.open('index.php?edit_css','_self')</script>" ;
+            echo "<script>Swal.fire(
+                'Thành công',
+                'Đã cập nhật!',
+                'success'
+              ).then((result)=>{
+                if (result.isConfirmed) {
+                    window.open('index.php?edit_css','_self')
+                }
+              })</script>";
         }
 
 

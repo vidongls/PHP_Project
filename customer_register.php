@@ -208,7 +208,7 @@ if(isset($_GET['pro_id'])){
                                 </div>
                                 <div class="input-wrapper">
 
-                                    <input style="border:none; padding: 0px; border-radius: 0px; margin-bottom: 0px"
+                                    <input style=" padding: 0px; border-radius: 0px; margin-bottom: 0px"
                                         type="file" id="inputFile" class="inputFile" name="c_image" required>
                                     <label tabindex="0" for="inputFile" class="uploadIcon"></label>
                                     <label tabindex="0" for="inputFile" class="fileReturn"></label>

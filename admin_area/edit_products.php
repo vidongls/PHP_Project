@@ -213,7 +213,7 @@
                       
                       <div class="col-md-6"><!-- col-md-6 Begin -->
                           
-                          <input name="product_img2" type="file" class="form-control">
+                          <input name="product_img2" type="file" class="form-control" required>
                           
                           <br>
                           
@@ -229,7 +229,7 @@
                       
                       <div class="col-md-6"><!-- col-md-6 Begin -->
                           
-                          <input name="product_img3" type="file" class="form-control form-height-custom">
+                          <input name="product_img3" type="file" class="form-control form-height-custom" required>
                           
                           <br>
                           
@@ -336,9 +336,18 @@ if(isset($_POST['update'])){
     
     if($run_product){
         
-       echo "<script>alert('Your product has been updated Successfully')</script>"; 
-        
-       echo "<script>window.open('index.php?view_products','_self')</script>"; 
+        echo "<script>
+        Swal.fire(
+          'Thành công',
+          'Đã cập nhật!',
+          'success'
+        ).then((result)=>{
+          if (result.isConfirmed) {
+            window.open('index.php?view_products','_self')
+          }
+        })
+        </script>";
+    
         
     }
     
