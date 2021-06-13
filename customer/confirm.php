@@ -27,7 +27,6 @@ if(isset($_GET['order_id'])){
     <link rel="stylesheet" href="styles/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../styles/swiper.min.css">
-    
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/main.css">
 </head>
@@ -35,7 +34,7 @@ if(isset($_GET['order_id'])){
    
  <!--Navigation-->
     
- <div class="menu-mobile">
+    <div class="menu-mobile">
         <div class="menu-items">
             <a href="../index.php" class="menu-link">Trang chủ</a>
             <a href="../shop.php" class="menu-link">Cửa hàng</a>
@@ -148,7 +147,7 @@ if(isset($_GET['order_id'])){
            
            <div class="col-md-3"><!-- col-md-3 Begin -->
    
-   <?php 
+    <?php 
     
     include("includes/sidebar.php");
     
@@ -163,20 +162,32 @@ if(isset($_GET['order_id'])){
                    <h1 align="center"> Xác nhận thanh toán </h1>
                    
                    <form action="confirm.php?update_id=<?php echo $order_id;  ?>" method="post" enctype="multipart/form-data"><!-- form Begin -->
+                       <?php
                        
+                       $get_order = "select * FROM customer_orders WHERE order_id = '$order_id'";
+
+                       $run_order = mysqli_query($con,$get_order);
+
+                       $row_order = mysqli_fetch_array($run_order);
+                       
+                       $invoice_order = $row_order['invoice_no'];
+
+                       $amount_order = $row_order['due_amount'];
+
+                       ?>
                        <div class="form-group"><!-- form-group Begin -->
                            
                          <label> Mã đơn hàng: </label>
                           
-                          <input type="text" class="form-control" name="invoice_no" required>
-                           
+                          <input type="text" class="form-control" name="invoice_no" value="<?php echo $invoice_order; ?>" required readonly>
+                        
                        </div><!-- form-group Finish -->
                        
                        <div class="form-group"><!-- form-group Begin -->
                            
                          <label> Số tiền gửi: </label>
                           
-                          <input type="text" class="form-control" name="amount_sent" required>
+                          <input type="text" class="form-control" name="amount_sent" value="<?php echo number_format($amount_order);?> đ" required readonly>
                            
                        </div><!-- form-group Finish -->
                        
@@ -186,7 +197,7 @@ if(isset($_GET['order_id'])){
                           
                           <select name="payment_mode" class="form-control"><!-- form-control Begin -->
                               
-                              <option> Chọn hình thức thanh toán </option>
+                              <option disabled selected> Chọn hình thức thanh toán </option>
                               <option> Ngân hàng </option>
                               <option>  Paypall </option>
                               <option> Visa </option>
@@ -220,7 +231,8 @@ if(isset($_GET['order_id'])){
                            </button><!-- tn btn-primary btn-lg Finish -->
                            
                        </div><!-- text-center Finish -->
-                       
+                      <?php $amount_order1 =  preg_replace('/(,)|( đ)/', '', $amount_order);
+                        echo $amount_order1;?> 
                    </form><!-- form Finish -->
                    
                    <?php 
@@ -230,17 +242,17 @@ if(isset($_GET['order_id'])){
                         $update_id = $_GET['update_id'];
                         
                         $invoice_no = $_POST['invoice_no'];
-                        
+
                         $amount = $_POST['amount_sent'];
-                        
+
+                        $amount =  preg_replace('/(,)|( đ)/', '', $amount);
+                 
                         $payment_mode = $_POST['payment_mode'];
                         
                         $ref_no = $_POST['ref_no'];
                         
                         $code = $_POST['code'];
-                        
-                        $payment_date = $_POST['date'];
-                        
+
                         $complete = "Complete";
                         
                         $insert_payment = "insert into payments (invoice_no,amount,payment_mode,ref_no,code,payment_date) values ('$invoice_no','$amount','$payment_mode','$ref_no','$code',NOW())";

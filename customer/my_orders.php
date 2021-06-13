@@ -30,14 +30,14 @@
                 <!--  tr Begin  -->
 
 
-                <th> STT: </th>
-                <th> Số tiền: </th>
-                <th> Mã đơn hàng: </th>
-                <th> Số lượng: </th>
-                <th> Màu: </th>
-                <th> Ngày đặt hàng:</th>
-                <th> Trạng thái: </th>
-
+                <th>STT</th>
+                <th>Số tiền</th>
+                <th>Mã đơn hàng</th>
+                <th>Số lượng</th>
+                <th>Màu</th>
+                <th>Ngày đặt hàng</th>
+                <th>Trạng thái</th>
+                <th>Lựa chọn</th>
             </tr><!--  tr Finish  -->
 
         </thead><!--  thead Finish  -->
@@ -81,15 +81,7 @@
                 
                 $i++;
                 
-                if($order_status=='Pending'){
-                    
-                    $order_status = 'Chưa xác nhận';
-                    
-                }else{
-                    
-                    $order_status = 'Đã xác nhận';
-                    
-                }
+                
             
             ?>
 
@@ -101,8 +93,33 @@
                 <td> <?php echo $invoice_no; ?> </td>
                 <td> <?php echo $qty; ?> </td>
                 <td> <?php echo $color; ?> </td>
-                <td> <?php echo $order_date; ?> </td>
-                <td> <?php echo $order_status; ?> </td>
+
+                <td> <?php $date=date_create($order_date); echo date_format($date,"m/d/Y");  ?> </td>
+                <td> 
+                <?php
+                
+                if($order_status=='Complete'){
+                    
+                    echo 'Đã xác nhận';
+                    
+                }else{
+                    
+                    echo 'Chưa xác nhận';
+                    
+                }
+                ?>
+                 </td>
+                <td>
+                <?php
+                
+                    if($order_status == 'Complete'){
+                        echo " <a href='#' target='_blank' class='btn btn-primary btn-sm disabled'>Đã thanh toán </a>";
+                    }
+                    else{
+                     echo " <a href='confirm.php?order_id=$order_id' target='_blank' class='btn btn-primary btn-sm'> Xác nhận thanh toán </a>";
+                    }
+                   ?>     
+                </td>
 
             </tr><!--  tr Finish  -->
 

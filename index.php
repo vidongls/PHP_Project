@@ -77,13 +77,13 @@
             <a href="details.php?pro_id=<?php echo $product_id; ?>" rel="noopenner" class="card">
                 <?php
                     
-                    if ($product_label == "new") {
+                    if ($product_label == "sale") {
 
-                        echo "<div class='new'>Mới!</div>";
+                        echo "<div class='sale'>Sale</div>";
 
                     } else {
 
-                        echo "<div class='sale'>Sale</div>";
+                        echo "<div class='new'>Mới!</div>";
 
                     }
 

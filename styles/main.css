@@ -764,6 +764,7 @@ button:focus {
   background-color: #f7f8fc;
   padding: 40px;
   position: relative;
+  
 }
 
 @media screen and (max-width: 799px) {
@@ -832,8 +833,9 @@ button:focus {
   background-color: white;
   overflow: hidden;
   border-bottom: solid 1px #595bbd;
-  border-radius: 2px;
+  border-radius: 6px;
   position: relative;
+ 
 }
 
 .card.anime {

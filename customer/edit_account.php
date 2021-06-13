@@ -14,7 +14,6 @@ $customer_name = $row_customer['customer_name'];
 
 $customer_email = $row_customer['customer_email'];
 
-
 $customer_contact = $row_customer['customer_contact'];
 
 $customer_address = $row_customer['customer_address'];

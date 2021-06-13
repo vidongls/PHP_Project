@@ -108,7 +108,7 @@
 
                                 <div class="col-md-7">
                                     <!-- col-md-7 Begin -->
-                                    <select name="product_qty" id="" class="form-control">
+                                    <select name="product_qty" id="" class="form-control" required>
                                         <!-- select Begin -->
                                         <option>1</option>
                                         <option>2</option>
@@ -128,9 +128,9 @@
                                 <div class="col-md-7">
                                     <!-- col-md-7 Begin -->
 
-                                    <select name="product_color" class="form-control" required
+                                    <select id="checkSelect" name="product_color" class="form-control" required
                                         oninput="setCustomValidity('')"
-                                        oninvalid="setCustomValidity('Must pick 1 color for the product')">
+                                        oninvalid="setCustomValidity('Chọn')">
                                         <!-- form-control Begin -->
 
                                         <option disabled selected>Chọn màu sắc</option>
@@ -147,7 +147,7 @@
 
                             <p class="price"><?php echo number_format($pro_price).""; ?>đ</p>
 
-                            <p class="text-center buttons"><button class="btn btn-primary i fa fa-shopping-cart"> Thêm vào giỏ </button></p>
+                            <p class="text-center buttons"><button id="btnCheck" class="btn btn-primary i fa fa-shopping-cart"> Thêm vào giỏ </button></p>
 
                         </form><!-- form-horizontal Finish -->
 
