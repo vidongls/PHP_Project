@@ -1,25 +1,23 @@
-<?php 
+<?php
 
 session_start();
 
-if(!isset($_SESSION['customer_email'])){
-    
-    echo "<script>window.open('../checkout.php','_self')</script>";
-    
-}else{
+if (!isset($_SESSION['customer_email'])) {
 
-include("includes/db.php");
-include("functions/functions.php");
-    
-if(isset($_GET['order_id'])){
-    
-    $order_id = $_GET['order_id'];
-    
-}
+    echo "<script>window.open('../checkout.php','_self')</script>";
+} else {
+
+    include("includes/db.php");
+    include("functions/functions.php");
+
+    if (isset($_GET['order_id'])) {
+        $order_id = $_GET['order_id'];
+    }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,10 +28,11 @@ if(isset($_GET['order_id'])){
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/main.css">
 </head>
+
 <body>
-   
- <!--Navigation-->
-    
+
+    <!--Navigation-->
+
     <div class="menu-mobile">
         <div class="menu-items">
             <a href="../index.php" class="menu-link">Trang chủ</a>
@@ -63,7 +62,8 @@ if(isset($_GET['order_id'])){
             <form method="get" action="result.php">
                 <div class="mainNav__input">
                     <input type="search" name="user_query" placeholder="Tìm kiếm ...">
-                    <button class="mainNav__btnSearch" type="submit"> <img src="../assets/icon-search.svg" alt=""></button>
+                    <button class="mainNav__btnSearch" type="submit"> <img src="../assets/icon-search.svg"
+                            alt=""></button>
                 </div>
             </form>
             <!--end Form search-->
@@ -84,45 +84,43 @@ if(isset($_GET['order_id'])){
                     ";
                 } else {
 
-                 $customer_session = $_SESSION['customer_email'];
-            
-                 $get_customer = "select * from customers where customer_email='$customer_session'";
-            
-                 $run_customer = mysqli_query($con,$get_customer);
-            
-                 $row_customer = mysqli_fetch_array($run_customer);
-            
-                 $customer_image = $row_customer['customer_image'];
-            
-                 $customer_name = $row_customer['customer_name'];
+                    $customer_session = $_SESSION['customer_email'];
 
-                 if(!isset($_SESSION['customer_email'])){
-            
-                }else{    
-                    if ($customer_image=='') {
+                    $get_customer = "select * from customers where customer_email='$customer_session'";
 
-                        echo "
+                    $run_customer = mysqli_query($con, $get_customer);
+
+                    $row_customer = mysqli_fetch_array($run_customer);
+
+                    $customer_image = $row_customer['customer_image'];
+
+                    $customer_name = $row_customer['customer_name'];
+
+                    if (!isset($_SESSION['customer_email'])) {
+                    } else {
+                        if ($customer_image == '') {
+
+                            echo "
                             <a href='customer/my_account.php?my_orders'>
                                 <div class='profile'>
                                     <img src='customer_images/customer_default_2.png' title='Xem Hồ Sơ' alt=''>
                                 </div>
                             </a>
                         ";
+                        } else {
 
-                    } else {
-
-                        echo "
+                            echo "
                             <a href='my_account.php?my_orders'>
                                 <div class='profile'>
                                     <img src='customer_images/$customer_image' title='Xem Hồ Sơ' alt=''>
                                 </div>
                             </a>
                         ";
-                    }
+                        }
                     }
                 }
-            
-            ?>
+
+                ?>
 
             <div class="menu-icon open">
                 <span></span>
@@ -130,172 +128,189 @@ if(isset($_GET['order_id'])){
         </div>
     </nav>
     <!--end Navigation-->
-   <div id="content"><!-- #content Begin -->
-       <div class="container"><!-- container Begin -->
-           <div class="col-md-12"><!-- col-md-12 Begin -->
-               
-               <ul class="breadcrumb"><!-- breadcrumb Begin -->
-                   <li>
-                       <a href="index.php">Home</a>
-                   </li>
-                   <li>
-                       My Account
-                   </li>
-               </ul><!-- breadcrumb Finish -->
-               
-           </div><!-- col-md-12 Finish -->
-           
-           <div class="col-md-3"><!-- col-md-3 Begin -->
-   
-    <?php 
-    
-    include("includes/sidebar.php");
-    
-    ?>
-               
-           </div><!-- col-md-3 Finish -->
-           
-           <div class="col-md-9"><!-- col-md-9 Begin -->
-               
-               <div class="box"><!-- box Begin -->
-                   
-                   <h1 align="center"> Xác nhận thanh toán </h1>
-                   
-                   <form action="confirm.php?update_id=<?php echo $order_id;  ?>" method="post" enctype="multipart/form-data"><!-- form Begin -->
-                       <?php
-                       
-                       $get_order = "select * FROM customer_orders WHERE order_id = '$order_id'";
+    <div id="content">
+        <!-- #content Begin -->
+        <div class="container">
+            <!-- container Begin -->
+            <div class="col-md-12">
+                <!-- col-md-12 Begin -->
 
-                       $run_order = mysqli_query($con,$get_order);
+                <ul class="breadcrumb">
+                    <!-- breadcrumb Begin -->
+                    <li>
+                        <a href="index.php">Home</a>
+                    </li>
+                    <li>
+                        My Account
+                    </li>
+                </ul><!-- breadcrumb Finish -->
 
-                       $row_order = mysqli_fetch_array($run_order);
-                       
-                       $invoice_order = $row_order['invoice_no'];
+            </div><!-- col-md-12 Finish -->
 
-                       $amount_order = $row_order['due_amount'];
+            <div class="col-md-3">
+                <!-- col-md-3 Begin -->
 
-                       ?>
-                       <div class="form-group"><!-- form-group Begin -->
-                           
-                         <label> Mã đơn hàng: </label>
-                          
-                          <input type="text" class="form-control" name="invoice_no" value="<?php echo $invoice_order; ?>" required readonly>
-                        
-                       </div><!-- form-group Finish -->
-                       
-                       <div class="form-group"><!-- form-group Begin -->
-                           
-                         <label> Số tiền gửi: </label>
-                          
-                          <input type="text" class="form-control" name="amount_sent" value="<?php echo number_format($amount_order);?> đ" required readonly>
-                           
-                       </div><!-- form-group Finish -->
-                       
-                       <div class="form-group"><!-- form-group Begin -->
-                           
-                         <label> Hình thức thanh toán: </label>
-                          
-                          <select name="payment_mode" class="form-control"><!-- form-control Begin -->
-                              
-                              <option disabled selected> Chọn hình thức thanh toán </option>
-                              <option> Ngân hàng </option>
-                              <option>  Paypall </option>
-                              <option> Visa </option>
-                              
-                          </select><!-- form-control Finish -->
-                           
-                       </div><!-- form-group Finish -->
-                       
-                       <div class="form-group"><!-- form-group Begin -->
-                           
-                         <label> Mã giao dịch: </label>
-                          
-                          <input type="text" class="form-control" name="ref_no" required>
-                           
-                       </div><!-- form-group Finish -->
-                       
-                       <div class="form-group"><!-- form-group Begin -->
-                           
-                         <label> Paypall / Ngân hàng </label>
-                          
-                          <input type="text" class="form-control" name="code" required>
-                           
-                       </div><!-- form-group Finish -->
-                       
-                       <div class="text-center"><!-- text-center Begin -->
-                           
-                           <button class="btn btn-primary btn-lg" name="confirm_payment"><!-- tn btn-primary btn-lg Begin -->
-                               
-                               <i class="fa fa-user-md"></i> Xác nhận thanh toán
-                               
-                           </button><!-- tn btn-primary btn-lg Finish -->
-                           
-                       </div><!-- text-center Finish -->
-                      <?php $amount_order1 =  preg_replace('/(,)|( đ)/', '', $amount_order);
-                        echo $amount_order1;?> 
-                   </form><!-- form Finish -->
-                   
-                   <?php 
-                   
-                    if(isset($_POST['confirm_payment'])){
-                        
-                        $update_id = $_GET['update_id'];
-                        
-                        $invoice_no = $_POST['invoice_no'];
+                <?php
 
-                        $amount = $_POST['amount_sent'];
+                    include("includes/sidebar.php");
 
-                        $amount =  preg_replace('/(,)|( đ)/', '', $amount);
-                 
-                        $payment_mode = $_POST['payment_mode'];
-                        
-                        $ref_no = $_POST['ref_no'];
-                        
-                        $code = $_POST['code'];
+                    ?>
 
-                        $complete = "Complete";
-                        
-                        $insert_payment = "insert into payments (invoice_no,amount,payment_mode,ref_no,code,payment_date) values ('$invoice_no','$amount','$payment_mode','$ref_no','$code',NOW())";
-                        
-                        $run_payment = mysqli_query($con,$insert_payment);
-                        
-                        $update_customer_order = "update customer_orders set order_status='$complete' where invoice_no='$invoice_no'";
-                        
-                        $run_customer_order = mysqli_query($con,$update_customer_order);
-                        
-                        $update_pending_order = "update pending_orders set order_status='$complete' where invoice_no='$invoice_no'";
-                        
-                        $run_pending_order = mysqli_query($con,$update_pending_order);
-                        
-                        if($run_pending_order){
-                            
-                            echo "<script>alert('Cảm ơn bạn đã mua hàng, đơn đặt hàng của bạn sẽ được hoàn thành trong vòng 24h làm việc')</script>";
-                            
-                            echo "<script>window.open('my_account.php?my_orders','_self')</script>";
-                            
+            </div><!-- col-md-3 Finish -->
+
+            <div class="col-md-9">
+                <!-- col-md-9 Begin -->
+
+                <div class="box">
+                    <!-- box Begin -->
+
+                    <h1 align="center"> Xác nhận thanh toán </h1>
+
+                    <form action="confirm.php?update_id=<?php echo $order_id;  ?>" method="post"
+                        enctype="multipart/form-data">
+                        <!-- form Begin -->
+                        <?php
+
+                            $get_order = "select * FROM customer_orders WHERE order_id = '$order_id'";
+
+                            $run_order = mysqli_query($con, $get_order);
+
+                            $row_order = mysqli_fetch_array($run_order);
+
+                            $invoice_order = $row_order['invoice_no'];
+
+                            $amount_order = $row_order['due_amount'];
+
+                            ?>
+                        <div class="form-group">
+                            <!-- form-group Begin -->
+
+                            <label> Mã đơn hàng: </label>
+
+                            <input type="text" class="form-control" name="invoice_no"
+                                value="<?php echo $invoice_order; ?>" required readonly>
+
+                        </div><!-- form-group Finish -->
+
+                        <div class="form-group">
+                            <!-- form-group Begin -->
+
+                            <label> Số tiền gửi: </label>
+
+                            <input type="text" class="form-control" name="amount_sent"
+                                value="<?php echo number_format($amount_order); ?> đ" required readonly>
+
+                        </div><!-- form-group Finish -->
+
+                        <div class="form-group">
+                            <!-- form-group Begin -->
+
+                            <label> Hình thức thanh toán: </label>
+
+                            <select name="payment_mode" class="form-control">
+                                <!-- form-control Begin -->
+
+                                <option disabled selected> Chọn hình thức thanh toán </option>
+                                <option> Ngân hàng </option>
+                                <option> Paypall </option>
+                                <option> Visa </option>
+
+                            </select><!-- form-control Finish -->
+
+                        </div><!-- form-group Finish -->
+
+                        <div class="form-group">
+                            <!-- form-group Begin -->
+
+                            <label> Mã giao dịch: </label>
+
+                            <input type="text" class="form-control" name="ref_no" required>
+
+                        </div><!-- form-group Finish -->
+
+                        <div class="form-group">
+                            <!-- form-group Begin -->
+
+                            <label> Paypall / Ngân hàng </label>
+
+                            <input type="text" class="form-control" name="code" required>
+
+                        </div><!-- form-group Finish -->
+
+                        <div class="text-center">
+                            <!-- text-center Begin -->
+
+                            <button class="btn btn-primary btn-lg" name="confirm_payment">
+                                <!-- tn btn-primary btn-lg Begin -->
+
+                                <i class="fa fa-user-md"></i> Xác nhận thanh toán
+
+                            </button><!-- tn btn-primary btn-lg Finish -->
+
+                        </div><!-- text-center Finish -->
+
+                    </form><!-- form Finish -->
+
+                    <?php
+
+                        if (isset($_POST['confirm_payment'])) {
+
+                            $update_id = $_GET['update_id'];
+
+                            $invoice_no = $_POST['invoice_no'];
+
+                            $amount = $_POST['amount_sent'];
+
+                            $amount =  preg_replace('/(,)|( đ)/', '', $amount);
+
+                            $payment_mode = $_POST['payment_mode'];
+
+                            $ref_no = $_POST['ref_no'];
+
+                            $code = $_POST['code'];
+
+                            $complete = "Complete";
+
+                            $insert_payment = "insert into payments (invoice_no,amount,payment_mode,ref_no,code,payment_date) values ('$invoice_no','$amount','$payment_mode','$ref_no','$code',NOW())";
+
+                            $run_payment = mysqli_query($con, $insert_payment);
+
+                            $update_customer_order = "update customer_orders set order_status='$complete' where order_id='$update_id'";
+
+                            $run_customer_order = mysqli_query($con, $update_customer_order);
+
+                            $update_pending_order = "update pending_orders set order_status='$complete' where order_id='$update_id'";
+
+                            $run_pending_order = mysqli_query($con, $update_pending_order);
+
+                            if ($run_pending_order) {
+
+                                echo "<script>alert('Cảm ơn bạn đã mua hàng, đơn đặt hàng của bạn sẽ được hoàn thành trong vòng 24h làm việc')</script>";
+
+                                echo "<script>window.open('my_account.php?my_orders','_self')</script>";
+                            }
                         }
-                        
-                    }
-                   
-                   ?>
-                   
-               </div><!-- box Finish -->
-               
-           </div><!-- col-md-9 Finish -->
-           
-       </div><!-- container Finish -->
-   </div><!-- #content Finish -->
-   
-   <?php 
-    
-    include("includes/footer.php");
-    
-    ?>
-    
+
+                        ?>
+
+                </div><!-- box Finish -->
+
+            </div><!-- col-md-9 Finish -->
+
+        </div><!-- container Finish -->
+    </div><!-- #content Finish -->
+
+    <?php
+
+        include("includes/footer.php");
+
+        ?>
+
     <script src="js/jquery-331.min.js"></script>
     <script src="js/bootstrap-337.min.js"></script>
-    
-    
+
+
 </body>
+
 </html>
 <?php } ?>

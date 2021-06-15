@@ -437,7 +437,7 @@ body {
 }
 
 .product a img.img-responsive {
-  max-height: 200px !important;
+  height: 190px !important;
   width: 100%;
   object-fit: cover;
 }

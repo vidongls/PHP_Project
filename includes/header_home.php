@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -7,46 +7,46 @@ include("functions/functions.php");
 
 ?>
 
-<?php 
+<?php
 
-if(isset($_GET['pro_id'])){
-    
+if (isset($_GET['pro_id'])) {
+
     $product_id = $_GET['pro_id'];
-    
+
     $get_product = "select * from products where product_id='$product_id'";
-    
-    $run_product = mysqli_query($con,$get_product);
-    
+
+    $run_product = mysqli_query($con, $get_product);
+
     $row_product = mysqli_fetch_array($run_product);
-    
+
     $p_cat_id = $row_product['p_cat_id'];
-    
+
     $pro_title = $row_product['product_title'];
-    
+
     $pro_price = $row_product['product_price'];
-    
+
     $pro_desc = $row_product['product_desc'];
-    
+
     $pro_img1 = $row_product['product_img1'];
-    
+
     $pro_img2 = $row_product['product_img2'];
-    
+
     $pro_img3 = $row_product['product_img3'];
-    
+
     $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
-    
-    $run_p_cat = mysqli_query($con,$get_p_cat);
-    
+
+    $run_p_cat = mysqli_query($con, $get_p_cat);
+
     $row_p_cat = mysqli_fetch_array($run_p_cat);
-    
+
     $p_cat_title = $row_p_cat['p_cat_title'];
-    
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,11 +58,12 @@ if(isset($_GET['pro_id'])){
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body>
-   
- <!--Navigation-->
-    
- <div class="menu-mobile">
+
+    <!--Navigation-->
+
+    <div class="menu-mobile">
         <div class="menu-items">
             <a href="index.php" class="menu-link">Trang chủ</a>
             <a href="shop.php" class="menu-link">Cửa hàng</a>
@@ -88,7 +89,7 @@ if(isset($_GET['pro_id'])){
         </div>
         <div class="iconWrapper">
             <!-- Form search -->
-            <form method="get" action="result.php">
+            <form method="get" action="">
                 <div class="mainNav__input">
                     <input type="search" name="user_query" placeholder="Tìm kiếm ...">
                     <button class="mainNav__btnSearch" type="submit"> <img src="assets/icon-search.svg" alt=""></button>
@@ -102,32 +103,31 @@ if(isset($_GET['pro_id'])){
                 </div>
             </a>
             <?php
-                if (!isset($_SESSION['customer_email'])) {
-                    echo "
+            if (!isset($_SESSION['customer_email'])) {
+                echo "
                         <a href='checkout.php'>
                             <div class='profile'>
                                 <img src='customer/customer_images/customer_default.png' title='Đăng Nhập' alt=''>
                             </div>
                         </a>
                     ";
+            } else {
+
+                $customer_session = $_SESSION['customer_email'];
+
+                $get_customer = "select * from customers where customer_email='$customer_session'";
+
+                $run_customer = mysqli_query($con, $get_customer);
+
+                $row_customer = mysqli_fetch_array($run_customer);
+
+                $customer_image = $row_customer['customer_image'];
+
+                $customer_name = $row_customer['customer_name'];
+
+                if (!isset($_SESSION['customer_email'])) {
                 } else {
-
-                 $customer_session = $_SESSION['customer_email'];
-            
-                 $get_customer = "select * from customers where customer_email='$customer_session'";
-            
-                 $run_customer = mysqli_query($con,$get_customer);
-            
-                 $row_customer = mysqli_fetch_array($run_customer);
-            
-                 $customer_image = $row_customer['customer_image'];
-            
-                 $customer_name = $row_customer['customer_name'];
-
-                 if(!isset($_SESSION['customer_email'])){
-            
-                }else{    
-                    if ($customer_image=='') {
+                    if ($customer_image == '') {
 
                         echo "
                             <a href='customer/my_account.php?my_orders'>
@@ -136,7 +136,6 @@ if(isset($_GET['pro_id'])){
                                 </div>
                             </a>
                         ";
-
                     } else {
 
                         echo "
@@ -147,9 +146,9 @@ if(isset($_GET['pro_id'])){
                             </a>
                         ";
                     }
-                    }
                 }
-            
+            }
+
             ?>
 
             <div class="menu-icon open">
