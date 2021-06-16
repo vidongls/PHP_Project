@@ -1,97 +1,100 @@
-<?php 
+<?php
 
-    $active='Shop';
-    include("includes/header.php");
+$active = 'Shop';
+include("includes/header.php");
 
 ?>
-   
-   <div id="content"><!-- #content Begin -->
-       <div class="container"><!-- container Begin -->
-           <div class="col-md-12"><!-- col-md-12 Begin -->
-               
-               <ul class="breadcrumb"><!-- breadcrumb Begin -->
-                   <li>
-                       <a href="index.php">Home</a>
-                   </li>
-                   <li>
-                       Shop
-                   </li>
-               </ul><!-- breadcrumb Finish -->
-               
-           </div><!-- col-md-12 Finish -->
-           
-           <div class="col-md-3"><!-- col-md-3 Begin -->
-   
-   <?php 
-    
-    include("includes/sidebar.php");
-    
-    ?>
-               
-           </div><!-- col-md-3 Finish -->
-           
-           <div class="col-md-9"><!-- col-md-9 Begin -->
-             
-             <?php 
-               
-                if(!isset($_GET['p_cat'])){
-                    
-                    if(!isset($_GET['cat'])){
-              
-                      echo "
+
+<div id="content">
+    <!-- #content Begin -->
+    <div class="container">
+        <!-- container Begin -->
+        <div class="col-md-12">
+            <!-- col-md-12 Begin -->
+
+            <ul class="breadcrumb">
+                <!-- breadcrumb Begin -->
+                <li>
+                    <a href="index.php">Home</a>
+                </li>
+                <li>
+                    Shop
+                </li>
+            </ul><!-- breadcrumb Finish -->
+
+        </div><!-- col-md-12 Finish -->
+
+        <div class="col-md-3">
+            <!-- col-md-3 Begin -->
+
+            <?php
+
+            include("includes/sidebar.php");
+
+            ?>
+
+        </div><!-- col-md-3 Finish -->
+
+        <div class="col-md-9">
+            <!-- col-md-9 Begin -->
+
+            <?php
+
+            if (!isset($_GET['p_cat'])) {
+
+                if (!isset($_GET['cat'])) {
+
+                    echo "
 
                        <div class='box'><!-- box Begin -->
                            <h1>Shop</h1>
                            <p>
-                               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo deleniti accusamus, consequuntur illum quasi ut. Voluptate a, ipsam repellendus ut fugiat minima? Id facilis itaque autem, officiis veritatis perferendis, quaerat!
+                              Luôn mang tới bạn những sản phẩm tốt và chất lượng nhất !
                            </p>
                        </div><!-- box Finish -->
 
                        ";
-                        
-                    }
-                   
-                   }
-               
-               ?>
-                             
-               <div class="row"><!-- row Begin -->
-               
-                   <?php 
-                   
-                        if(!isset($_GET['p_cat'])){
-                            
-                         if(!isset($_GET['cat'])){
-                            
-                            $per_page=6; 
-                             
-                            if(isset($_GET['page'])){
-                                
-                                $page = $_GET['page'];
-                                
-                            }else{
-                                
-                                $page=1;
-                                
-                            }
-                            
-                            $start_from = ($page-1) * $per_page;
-                             
-                            $get_products = "select * from products order by 1 DESC LIMIT $start_from,$per_page";
-                             
-                            $run_products = mysqli_query($con,$get_products);
-                             
-                            while($row_products=mysqli_fetch_array($run_products)){
-                                
-                                $pro_id = $row_products['product_id'];
-        
-                                $pro_title = $row_products['product_title'];
+                }
+            }
 
-                                $pro_price = $row_products['product_price'];
+            ?>
 
-                                $pro_img1 = $row_products['product_img1'];
-                                $pro_price =  number_format($pro_price)."";
-                                echo "
+            <div class="row">
+                <!-- row Begin -->
+
+                <?php
+
+                if (!isset($_GET['p_cat'])) {
+
+                    if (!isset($_GET['cat'])) {
+
+                        $per_page = 6;
+
+                        if (isset($_GET['page'])) {
+
+                            $page = $_GET['page'];
+                        } else {
+
+                            $page = 1;
+                        }
+
+                        $start_from = ($page - 1) * $per_page;
+
+                        $get_products = "select * from products order by 1 DESC LIMIT $start_from,$per_page";
+
+                        $run_products = mysqli_query($con, $get_products);
+
+                        while ($row_products = mysqli_fetch_array($run_products)) {
+
+                            $pro_id = $row_products['product_id'];
+
+                            $pro_title = $row_products['product_title'];
+
+                            $pro_price = $row_products['product_price'];
+
+                            $pro_img1 = $row_products['product_img1'];
+                            $pro_price =  number_format($pro_price) . "";
+                            echo "
                                 
                                     <div class='col-md-4 col-sm-6 center-responsive'>
                                     
@@ -140,91 +143,89 @@
                                     </div>
                                 
                                 ";
-                                
                         }
-                        
-                   ?>
-               
-               </div><!-- row Finish -->
-               
-               <center>
-                   <ul class="pagination"><!-- pagination Begin -->
-					 <?php
-                             
-                    $query = "select * from products";
-                             
-                    $result = mysqli_query($con,$query);
-                             
-                    $total_records = mysqli_num_rows($result);
-                             
-                    $total_pages = ceil($total_records / $per_page);
-                             
+
+                ?>
+
+            </div><!-- row Finish -->
+
+            <center>
+                <ul class="pagination">
+                    <!-- pagination Begin -->
+                    <?php
+
+                        $query = "select * from products";
+
+                        $result = mysqli_query($con, $query);
+
+                        $total_records = mysqli_num_rows($result);
+
+                        $total_pages = ceil($total_records / $per_page);
+
                         echo "
                         
                             <li>
                             
-                                <a href='shop.php?page=1'> ".'Đầu trang'." </a>
+                                <a href='shop.php?page=1'> " . 'Đầu trang' . " </a>
                             
                             </li>
                         
                         ";
-                             
-                        for($i=1; $i<=$total_pages; $i++){
-                            
-                              echo "
+
+                        for ($i = 1; $i <= $total_pages; $i++) {
+
+                            echo "
                         
                             <li>
                             
-                                <a href='shop.php?page=".$i."'> ".$i." </a>
+                                <a href='shop.php?page=" . $i . "'> " . $i . " </a>
                             
                             </li>
                         
-                        ";  
-                            
+                        ";
                         };
-                             
+
                         echo "
                         
                             <li>
                             
-                                <a href='shop.php?page=$total_pages'> ".'Cuối trang'." </a>
+                                <a href='shop.php?page=$total_pages'> " . 'Cuối trang' . " </a>
                             
                             </li>
                         
                         ";
-                             
-					    	}
-							
-						}
-					 
-					 ?> 
-                       
-                   </ul><!-- pagination Finish -->
-               </center>
-                
-                <?php 
-               
-               getpcatpro(); 
-               
-               getcatpro();
-               
-               ?>  
-               
-           </div><!-- col-md-9 Finish -->
-           
-       </div><!-- container Finish -->
-   </div><!-- #content Finish -->
-   
-   <?php 
-    
-    include("includes/footer.php");
-    
-    ?>
-    
-    <script src="js/jquery-331.min.js"></script>
-    <script src="js/bootstrap-337.min.js"></script>
-    <script  src="js/main.js"></script>
-    <script  src="js/mobile_menu.js"></script>
-    
+                    }
+                }
+
+            ?>
+
+                </ul><!-- pagination Finish -->
+            </center>
+
+            <?php
+
+            getpcatpro();
+
+            getcatpro();
+
+            ?>
+
+        </div><!-- col-md-9 Finish -->
+
+    </div><!-- container Finish -->
+</div><!-- #content Finish -->
+
+<?php
+
+include("includes/footer.php");
+
+?>
+
+<script src="js/jquery-331.min.js"></script>
+<script src="js/bootstrap-337.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/mobile_menu.js"></script>
+
 </body>
+
 </html>

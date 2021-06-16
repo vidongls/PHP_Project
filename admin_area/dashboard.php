@@ -1,10 +1,9 @@
-<?php 
-    
-    if(!isset($_SESSION['admin_email'])){
-        
-        echo "<script>window.open('login.php','_self')</script>";
-        
-    }else{
+<?php
+
+if (!isset($_SESSION['admin_email'])) {
+
+    echo "<script>window.open('login.php','_self')</script>";
+} else {
 
 ?>
 
@@ -276,33 +275,33 @@
                         <tbody>
                             <!-- tbody begin -->
 
-                            <?php 
-                          
-                                $i=0;
-          
+                            <?php
+
+                                $i = 0;
+
                                 $get_order = "select * from pending_orders order by 1 DESC LIMIT 0,5";
-          
-                                $run_order = mysqli_query($con,$get_order);
-          
-                                while($row_order=mysqli_fetch_array($run_order)){
-                                    
+
+                                $run_order = mysqli_query($con, $get_order);
+
+                                while ($row_order = mysqli_fetch_array($run_order)) {
+
                                     $order_id = $row_order['order_id'];
-                                    
+
                                     $c_id = $row_order['customer_id'];
-                                    
+
                                     $invoice_no = $row_order['invoice_no'];
-                                    
+
                                     $product_id = $row_order['product_id'];
-                                    
+
                                     $qty = $row_order['qty'];
-                                    
+
                                     $color = $row_order['color'];
-                                    
+
                                     $order_status = $row_order['order_status'];
-                                    
+
                                     $i++;
-                            
-                            ?>
+
+                                ?>
 
                             <tr>
                                 <!-- tr begin -->
@@ -310,19 +309,19 @@
                                 <td> <?php echo $order_id; ?> </td>
                                 <td>
 
-                                    <?php 
-                                    
-                                        $get_customer = "select * from customers where customer_id='$c_id'";
-                                    
-                                        $run_customer = mysqli_query($con,$get_customer);
-                                    
-                                        $row_customer = mysqli_fetch_array($run_customer);
-                                    
-                                        $customer_email = $row_customer['customer_email'];
-                                    
-                                        echo $customer_email;
-                                    
-                                    ?>
+                                    <?php
+
+                                            $get_customer = "select * from customers where customer_id='$c_id'";
+
+                                            $run_customer = mysqli_query($con, $get_customer);
+
+                                            $row_customer = mysqli_fetch_array($run_customer);
+
+                                            $customer_email = $row_customer['customer_email'];
+
+                                            echo $customer_email;
+
+                                            ?>
 
                                 </td>
                                 <td> <?php echo $invoice_no; ?> </td>
@@ -331,19 +330,17 @@
                                 <td> <?php echo $color; ?> </td>
                                 <td>
 
-                                    <?php 
-                                    
-                                        if($order_status=='pending'){
-                                            
-                                            echo $order_status='pending';
-                                            
-                                        }else{
-                                            
-                                            echo $order_status='Complete';
-                                            
-                                        }
-                                    
-                                    ?>
+                                    <?php
+
+                                            if ($order_status == 'Pending') {
+
+                                                echo $order_status = 'Pending';
+                                            } else {
+
+                                                echo $order_status = 'Complete';
+                                            }
+
+                                            ?>
 
                                 </td>
 
@@ -362,7 +359,7 @@
                     <a href="index.php?view_orders">
                         <!-- a href begin -->
 
-                       Xem tất cả đơn đặt hàng <i class="fa fa-arrow-circle-right"></i>
+                        Xem tất cả đơn đặt hàng <i class="fa fa-arrow-circle-right"></i>
 
                     </a><!-- a href finish -->
 

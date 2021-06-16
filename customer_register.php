@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -7,40 +7,39 @@ include("functions/functions.php");
 
 ?>
 
-<?php 
+<?php
 
-if(isset($_GET['pro_id'])){
-    
+if (isset($_GET['pro_id'])) {
+
     $product_id = $_GET['pro_id'];
-    
+
     $get_product = "select * from products where product_id='$product_id'";
-    
-    $run_product = mysqli_query($con,$get_product);
-    
+
+    $run_product = mysqli_query($con, $get_product);
+
     $row_product = mysqli_fetch_array($run_product);
-    
+
     $p_cat_id = $row_product['p_cat_id'];
-    
+
     $pro_title = $row_product['product_title'];
-    
+
     $pro_price = $row_product['product_price'];
-    
+
     $pro_desc = $row_product['product_desc'];
-    
+
     $pro_img1 = $row_product['product_img1'];
-    
+
     $pro_img2 = $row_product['product_img2'];
-    
+
     $pro_img3 = $row_product['product_img3'];
-    
+
     $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
-    
-    $run_p_cat = mysqli_query($con,$get_p_cat);
-    
+
+    $run_p_cat = mysqli_query($con, $get_p_cat);
+
     $row_p_cat = mysqli_fetch_array($run_p_cat);
-    
+
     $p_cat_title = $row_p_cat['p_cat_title'];
-    
 }
 
 ?>
@@ -104,32 +103,31 @@ if(isset($_GET['pro_id'])){
                 </div>
             </a>
             <?php
-                if (!isset($_SESSION['customer_email'])) {
-                    echo "
+            if (!isset($_SESSION['customer_email'])) {
+                echo "
                         <a href='checkout.php'>
                             <div class='profile'>
                                 <img src='customer/customer_images/customer_default.png' title='Đăng Nhập' alt=''>
                             </div>
                         </a>
                     ";
+            } else {
+
+                $customer_session = $_SESSION['customer_email'];
+
+                $get_customer = "select * from customers where customer_email='$customer_session'";
+
+                $run_customer = mysqli_query($con, $get_customer);
+
+                $row_customer = mysqli_fetch_array($run_customer);
+
+                $customer_image = $row_customer['customer_image'];
+
+                $customer_name = $row_customer['customer_name'];
+
+                if (!isset($_SESSION['customer_email'])) {
                 } else {
-
-                 $customer_session = $_SESSION['customer_email'];
-            
-                 $get_customer = "select * from customers where customer_email='$customer_session'";
-            
-                 $run_customer = mysqli_query($con,$get_customer);
-            
-                 $row_customer = mysqli_fetch_array($run_customer);
-            
-                 $customer_image = $row_customer['customer_image'];
-            
-                 $customer_name = $row_customer['customer_name'];
-
-                 if(!isset($_SESSION['customer_email'])){
-            
-                }else{    
-                    if ($customer_image=='') {
+                    if ($customer_image == '') {
 
                         echo "
                             <a href='customer/my_account.php?my_orders'>
@@ -138,7 +136,6 @@ if(isset($_GET['pro_id'])){
                                 </div>
                             </a>
                         ";
-
                     } else {
 
                         echo "
@@ -149,9 +146,9 @@ if(isset($_GET['pro_id'])){
                             </a>
                         ";
                     }
-                    }
                 }
-            
+            }
+
             ?>
 
             <div class="menu-icon open">
@@ -208,10 +205,11 @@ if(isset($_GET['pro_id'])){
                                 </div>
                                 <div class="input-wrapper">
 
-                                    <input style=" padding: 0px; border-radius: 0px; margin-bottom: 0px"
-                                        type="file" id="inputFile" class="inputFile" name="c_image" required>
+                                    <input style=" padding: 0px; border-radius: 0px; margin-bottom: 0px" type="file"
+                                        id="inputFile" class="inputFile" name="c_image" required>
                                     <label tabindex="0" for="inputFile" class="uploadIcon"></label>
                                     <label tabindex="0" for="inputFile" class="fileReturn"></label>
+
                                 </div>
 
                                 <button type="submit" name="register" class="btn">Tạo tài khoản</button>
@@ -237,60 +235,57 @@ if(isset($_GET['pro_id'])){
 </html>
 
 
-<?php 
+<?php
 
-if(isset($_POST['register'])){
-    
+if (isset($_POST['register'])) {
+
     $c_name = $_POST['c_name'];
-    
+
     $c_email = $_POST['c_email'];
-    
+
     $c_pass = $_POST['c_pass'];
-    
+
     $c_contact = $_POST['c_contact'];
-    
+
     $c_address = $_POST['c_address'];
-    
+
     $c_image = $_FILES['c_image']['name'];
-    
+
     $c_image_tmp = $_FILES['c_image']['tmp_name'];
-    
+
     $c_ip = getRealIpUser();
-    
-    move_uploaded_file($c_image_tmp,"customer/customer_images/$c_image");
-    
+
+    move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
+
     $insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_contact','$c_address','$c_image','$c_ip')";
-    
-    $run_customer = mysqli_query($con,$insert_customer);
-    
+
+    $run_customer = mysqli_query($con, $insert_customer);
+
     $sel_cart = "select * from cart where ip_add='$c_ip'";
-    
-    $run_cart = mysqli_query($con,$sel_cart);
-    
+
+    $run_cart = mysqli_query($con, $sel_cart);
+
     $check_cart = mysqli_num_rows($run_cart);
-    
-    if($check_cart>0){
-        
+
+    if ($check_cart > 0) {
+
         /// If register have items in cart ///
-        
-        $_SESSION['customer_email']=$c_email;
-        
-        echo "<script>alert('You have been Registered Sucessfully')</script>";
-        
+
+        $_SESSION['customer_email'] = $c_email;
+
+        echo "<script>alert('Bạn đã đăng ký tài khoản thành công! Chúc bạn mua hàng vui vẻ')</script>";
+
         echo "<script>window.open('checkout.php','_self')</script>";
-        
-    }else{
-        
+    } else {
+
         /// If register without items in cart ///
-        
-        $_SESSION['customer_email']=$c_email;
-        
-        echo "<script>alert('You have been Registered Sucessfully')</script>";
-        
+
+        $_SESSION['customer_email'] = $c_email;
+
+        echo "<script>alert('Bạn đã đăng ký tài khoản thành công! Chúc bạn mua hàng vui vẻ')</script>";
+
         echo "<script>window.open('index.php','_self')</script>";
-        
     }
-    
 }
 
 ?>
